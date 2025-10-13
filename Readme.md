@@ -1,33 +1,14 @@
-# TranscribirAudio - Interfaz Gráfica con Tkinter
+# TranscribirAudio
 
-Aplicación para transcribir archivos de audio usando reconocimiento de voz con una interfaz gráfica moderna y intuitiva usando Tkinter.
+Aplicación para transcribir archivos de audio usando reconocimiento de voz.
 
 ## ✨ Características Principales
 
-### Interfaz Moderna con Tkinter
-- **Selector de archivos integrado**: Botón directo para seleccionar archivos de audio
-- **Filtros de archivo automáticos**: Solo muestra archivos de audio compatibles (WAV, MP3, M4A, FLAC, OGG, AAC)
-- **Información detallada del archivo**: Muestra tamaño, duración, segmentos, canales y frecuencia
-- **Configuración flexible**: Permite elegir desde qué segmento comenzar la transcripción
-
-### Progreso en Tiempo Real
-- **Barra de progreso visual**: Indica el porcentaje de completado
-- **Log en tiempo real**: Muestra el estado de cada segmento procesado
-- **Información detallada**: Estado de éxito/error de cada segmento
-- **Controles de transcripción**: Botones para cancelar o ver resultado
-
-### Funcionalidades Avanzadas
-- **Procesamiento en segundo plano**: La interfaz no se bloquea durante la transcripción
-- **Ventana de resultados dedicada**: Muestra el resultado final en una ventana separada
-- **Copiado al portapapeles**: Botón para copiar el resultado fácilmente
-- **Guardado de archivos**: Permite guardar la transcripción en un archivo .txt
-- **Cancelación de proceso**: Opción para cancelar la transcripción en cualquier momento
-
-### Diseño Profesional
-- **Tema oscuro**: Interfaz moderna con colores oscuros
-- **Tipografía legible**: Fuentes optimizadas para lectura
-- **Organización por secciones**: Layout claro y organizado
-- **Iconos descriptivos**: Emojis para mejor identificación visual
+- **Compatibilidad de formatos**: Soporta WAV, MP3, M4A, FLAC, OGG, AAC
+- **Procesamiento por segmentos**: Divide el audio en segmentos de 30 segundos para mejor precisión
+- **Guardado automático**: La transcripción se guarda en archivos .txt
+- **Progreso en tiempo real**: Muestra el estado de cada segmento procesado
+- **Compatibilidad Python 3.13**: Totalmente compatible con la última versión de Python
 
 ## 🎵 Recomendaciones de Audio
 Preferible convertir los audios a WAV (Mejor mono y a 44100 Hz) con Audacity para mejores resultados de transcripción.
@@ -43,83 +24,60 @@ Estos son los puntos y el minuto del audio en el que comienza a hablarse de ello
 
 ## 🚀 Cómo usar la aplicación
 
-1. **Ejecuta la aplicación** (ver opciones de ejecución más abajo)
-2. **Selecciona un archivo**: Haz clic en "📁 Seleccionar archivo de audio"
-3. **Revisa la información**: Verifica los datos del archivo (duración, segmentos, etc.)
-4. **Configura el inicio** (opcional): 
-   - Ingresa el número del segmento desde donde empezar
-   - Deja vacío para empezar desde el inicio
-5. **Inicia la transcripción**: Haz clic en "🚀 Comenzar Transcripción"
-6. **Observa el progreso**: Sigue el progreso en tiempo real en el log
-7. **Revisa el resultado**: Al finalizar, haz clic en "✅ Ver Resultado"
+1. **Ejecuta la aplicación** desde la línea de comandos
+2. **Selecciona un archivo**: Cuando se abra el diálogo, elige tu archivo de audio
+3. **Observa el progreso**: La aplicación procesará el audio por segmentos
+4. **Resultado**: Al finalizar, encontrarás el archivo de transcripción guardado automáticamente
 
 ## 🔧 Opciones de Ejecución
 
-### Opción 1: Compilar ejecutable (Recomendado)
-1. Haz doble clic en `compilar_tkinter.bat`
-2. El script automáticamente:
-   - Creará el entorno virtual `.venv_new`
-   - Instalará todas las dependencias
-   - Compilará el ejecutable
-3. Ejecuta `dist/TranscribirAudio_Tkinter.exe`
-
-### Opción 2: Ejecutar directamente (Desarrollo)
+### Opción 1: Ejecutar directamente
 ```powershell
-# Activar entorno virtual (si existe)
-.venv_new\Scripts\Activate.ps1
-
-# Instalar dependencias si es necesario
-pip install -r requirements.txt
+# Activar entorno virtual
+.venv\Scripts\Activate.ps1
 
 # Ejecutar aplicación
-python main_tkinter.py
+python transcribe_audio.py
 ```
 
-### Opción 3: Manual
+### Opción 2: Configuración desde cero
 ```powershell
 # Crear entorno virtual
-python -m venv .venv_new
+python -m venv .venv
 
 # Activar entorno
-.venv_new\Scripts\Activate.ps1
+.venv\Scripts\Activate.ps1
 
 # Instalar dependencias
 pip install -r requirements.txt
 
-# Compilar (opcional)
-pyinstaller --clean TranscribirAudio_Tkinter.spec
-
-# O ejecutar directamente
-python main_tkinter.py
+# Ejecutar aplicación
+python transcribe_audio.py
 ```
 
 ## 📋 Dependencias
-- **SpeechRecognition 3.10.0**: Reconocimiento de voz con Google Speech API
+- **SpeechRecognition 3.14.3**: Reconocimiento de voz con Google Speech API (Compatible con Python 3.13)
 - **pydub 0.25.1**: Procesamiento y manipulación de audio
-- **PyInstaller 5.13.2**: Generación de ejecutables standalone
-- **Tkinter**: Interfaz gráfica (incluido con Python)
+- **PyInstaller 6.16.0**: Generación de ejecutables standalone (Compatible con Python 3.13)
 
 ## 🎯 Flujo Completo de la Aplicación
 
-1. **Inicio**: Interfaz principal con selector de archivos
-2. **Análisis**: Al seleccionar un archivo, se analiza automáticamente
-3. **Configuración**: Opción para elegir segmento de inicio
-4. **Procesamiento**: Transcripción con progreso en tiempo real
-5. **Resultado**: Ventana dedicada con opciones de copia y guardado
+1. **Inicio**: Ejecutar el script desde línea de comandos
+2. **Selección**: Diálogo para seleccionar archivo de audio
+3. **Análisis**: El archivo se analiza y divide en segmentos
+4. **Procesamiento**: Transcripción segmento por segmento con progreso en tiempo real
+5. **Resultado**: Archivo de texto guardado automáticamente
 
 ## ⚠️ Notas Técnicas
 
+- **Python 3.13**: Totalmente compatible con Python 3.13.5 (incluye módulos de compatibilidad)
 - **Segmentación**: Procesa audio en segmentos de 30 segundos
-- **Compatibilidad**: Soporta múltiples formatos de audio
+- **Compatibilidad**: Soporta múltiples formatos de audio (WAV, MP3, M4A, FLAC, OGG, AAC)
 - **Limpieza automática**: Los archivos temporales se eliminan automáticamente
-- **Guardado automático**: La transcripción se guarda también como archivo .txt
+- **Guardado automático**: La transcripción se guarda como archivo .txt
 - **Conectividad**: Requiere conexión a internet para Google Speech Recognition
-- **Tkinter nativo**: No requiere dependencias gráficas adicionales
 
 ## 📁 Archivos del Proyecto
 
-- `main_tkinter.py` - Aplicación principal con interfaz Tkinter
-- `transcribe_audio_kivy.py` - Funciones de transcripción con callback
+- `transcribe_audio.py` - Aplicación principal de línea de comandos
 - `requirements.txt` - Dependencias del proyecto
-- `TranscribirAudio_Tkinter.spec` - Configuración de PyInstaller
-- `compilar_tkinter.bat` - Script automático de compilación
